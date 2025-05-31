@@ -28,11 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <section className="min-h-screen flex">
+        <section className="min-h-screen flex bg-[#1f1a37]">
           {/* Sidebar */}
-          <aside className="w-64 bg-[#1f1a37] text-white p-4">
+          <aside className="w-52 text-white px-4 py-6">
             <div className="font-bold bg-white flex justify-center py-2 rounded-lg text-lg mb-6">
-              <Image src="dime-logo.svg" alt="Dime logo" height="20" width="20"/>
+              <Image src="dime-logo.svg" alt="Dime logo" height="80" width="80"/>
               </div>
             <nav className="space-y-2 text-sm">
               {[
@@ -48,7 +48,7 @@ export default function RootLayout({
               ].map((item) => (
                 <div
                   key={item}
-                  className={`px-3 py-2 rounded hover:bg-[#2e264f] ${item === 'Launchpad' ? 'bg-[#2e264f]' : ''
+                  className={`px-3 py-2 rounded cursor-pointer hover:bg-[#2e264f] ${item === 'Launchpad' ? 'bg-[#2e264f]' : ''
                     }`}
                 >
                   {item}
@@ -58,7 +58,7 @@ export default function RootLayout({
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 bg-[#f4f5f7] p-6">{children}</main>
+          <main className="flex-1 bg-[#f4f5f7] p-6 mr-4 mt-6 rounded-t-2xl">{children}</main>
         </section>
       </body>
     </html>

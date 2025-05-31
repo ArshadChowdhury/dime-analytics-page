@@ -3,25 +3,36 @@ import KPIResultsTable from "../components/KPIResultsTable";
 
 export default function KpiAnalytics() {
   return (
-   <div className="bg-white shadow rounded-lg p-6">
+    <div className="rounded-lg px-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-semibold text-gray-800">Clients</h1>
-        <button className="text-sm text-gray-500 border border-gray-300 rounded px-3 py-1 hover:bg-gray-100">
-          ← Back to Dashboard
+        <h1 className="text-4xl font-semibold text-[#1f1a37]">Clients</h1>
+        <button className="flex items-center gap-2 cursor-pointer text-gray-600 border-2 border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+          Back to Dashboard
         </button>
       </div>
 
-      <nav className="flex space-x-4 text-sm border-b border-gray-200 mb-4">
-        {['Overview', 'Cash Flow', 'Transactions', 'Audits', 'Documents', 'Analytics'].map((item) => (
-          <span
-            key={item}
-            className={`pb-2 ${
-              item === 'Analytics' ? 'border-b-2 border-black font-medium' : 'text-gray-500'
-            }`}
-          >
-            {item}
-          </span>
-        ))}
+      <nav className="w-full flex items-center justify-between text-sm border-b-2 border-violet-400 mb-4">
+        <div className="flex items-center gap-20">
+          {['Overview', 'Cash Flow', 'Transactions', 'Audits', 'Documents', 'Analytics'].map((item) => (
+            <span
+              key={item}
+              className={`pb-2 cursor-pointer text-lg ${item === 'Analytics' ? 'border-b-4 border-violet-800 font-semibold' : 'text-gray-600'
+                }`}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+        <div className="flex items-center gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" className="size-6">
+            <path fillRule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clipRule="evenodd" />
+          </svg>
+
+          AI CFO
+        </div>
       </nav>
 
       <KPIHeader />
