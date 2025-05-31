@@ -7,9 +7,9 @@ export default function KPIHeader() {
         {tabs.map((tab) => (
           <button
             key={tab}
-            className={`text-xs px-4 py-1.5 rounded border ${
+            className={`text-sm font-light px-4 py-1.5 rounded border cursor-pointer ${
               tab === 'KPI'
-                ? 'bg-indigo-100 text-indigo-700 border-indigo-300'
+                ? 'bg-indigo-100 text-indigo-700 border-dimePaleGrey'
                 : 'bg-white text-gray-600 border-gray-300'
             }`}
           >

@@ -1,3 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+*{
+    font-family: 'Poppins', sans-serif;
+}
 
+
+.purpleBorder {
+  border-color: #7940F3;
+}
+
+.purpleTitle {
+    color: #3C2C63;
+}
+
+.blueBackground{
+background-image: linear-gradient(to top, #06083D, #34235E);
+}
+
+.dimeWarmYellow{
+    color : #FFC979;
+}
+
+
+.dimeFieldGrey{
+    color : #C1C1CE;
+}
+
+.dimeMenuSelector:hover {
+    background-color : #B6B6BF;
+}
+
+.dimePaleGrey {
+    border-color : #FAFAFD;
+}
+
+.dimeBodyGrey{
+    color:#5F6073;
+}
+
+.dimeFaintPink {
+   border-color: #E9DFFD;
+}
