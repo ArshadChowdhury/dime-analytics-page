@@ -1,11 +1,15 @@
 import KPIHeader from "../components/KPIHeader";
 import KPIResultsTable from "../components/KPIResultsTable";
+import KPICharts from "../components/KPICharts";
+import KPIRevenueBenchmark from "../components/KPIRevenueBenchmark";
+import KPIGrowthBenchmarkChart from "../components/KPIGrowthBenchmarkChart"
+import KPIExplanation from "../components/KPIExplanation";
 
 export default function KpiAnalytics() {
   return (
     <div className="rounded-lg px-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-[40px] font-medium purpleTitle">Clients</h1>
+        <h1 className="text-[40px] font-medium text-[#3C2C63]">Clients</h1>
         <button className="flex items-center gap-2 cursor-pointer text-gray-600 border-2 border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -14,12 +18,12 @@ export default function KpiAnalytics() {
         </button>
       </div>
 
-      <nav className="w-full flex items-center justify-between text-sm border-b-1 purpleBorder mb-4">
+      <nav className="w-full flex items-center justify-between text-sm border-b-1 border-[#7940F3] mb-4">
         <div className="flex items-center gap-16">
           {['Overview', 'Cash Flow', 'Transactions', 'Audits', 'Documents', 'Analytics'].map((item) => (
             <span
               key={item}
-              className={`tracking-wide pb-2 cursor-pointer text-base font-light ${item === 'Analytics' ? 'border-b-4 purpleBorder font-semibold' : 'text-gray-600'
+              className={`tracking-wide pb-2 cursor-pointer text-base font-light ${item === 'Analytics' ? 'border-b-4 border-[#7940F3] font-semibold' : 'text-[#1D1D1D]'
                 }`}
             >
               {item}
@@ -34,9 +38,13 @@ export default function KpiAnalytics() {
           AI CFO
         </div>
       </nav>
-
       <KPIHeader />
       <KPIResultsTable />
+      <KPICharts />
+      <KPIRevenueBenchmark />
+      <KPIGrowthBenchmarkChart />
+      <KPIExplanation />
+      
     </div>
   );
 }

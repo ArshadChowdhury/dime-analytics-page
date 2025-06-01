@@ -1,19 +1,17 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -40,32 +38,44 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
-        <section className="min-h-screen flex blueBackground">
+        <section className="min-h-screen flex gredientBackground">
           {/* Sidebar */}
-          <aside className="w-52 text-white px-4 py-6">
-            <div className="font-bold py-2 rounded-lg text-lg mb-6">
-              <Image src="dime-logo.svg" alt="Dime logo" height="24" width="89" />
+          <aside className="flex flex-col justify-between w-52 text-white px-4 py-6">
+            <div>
+              <div className="font-bold py-2 rounded-lg text-lg mb-6">
+                <Image src="dime-logo.svg" alt="Dime logo" height="24" width="90" />
+              </div>
+              <nav className="flex flex-col gap-3">
+                {
+                  navItems.map((item) => (
+                    <div
+                      key={item.name}
+                      className={"px-3 py-2 flex gap-2 items-center rounded cursor-pointer hover:bg-menu-selector"}
+                    >
+                      <Image src={item.iconSrc} alt="Dime logo" height="16" width="16" />
+                      <span className={`text-sm text-field-grey ${item.name === 'Clients' ? 'text-warm-yellow' : ''}`}>{item.name}</span>
+                    </div>
+                  ))}
+              </nav>
             </div>
-            <nav className="flex flex-col gap-3">
-              {
-                navItems.map((item) => (
-                  <div
-                    key={item.name}
-                    className={"px-3 py-2 flex gap-2 items-center rounded cursor-pointer dimeMenuSelector"}
-                  >
-                    <Image src={item.iconSrc} alt="Dime logo" height="16" width="16" />
-                    <span className={`text-sm text-dimeFieldGrey ${item.name === 'Clients' ? 'dimeWarmYellow' : '' }`}>{item.name}</span>
-                  </div>
-                ))}
-          </nav>
-        </aside>
+            <div className="flex flex-col gap-4">
+              <span>Unlock Navabar</span>
+              <span>Launchpad</span>
+              <span>Settings</span>
+              <span>User Profile</span>
+            </div>
 
-        {/* Main Content */}
-        <main className="flex-1 bg-[#f4f5f7] p-6 mr-4 mt-6 rounded-t-2xl">{children}</main>
-      </section>
-    </body>
+
+
+
+          </aside>
+
+          {/* Main Content */}
+          <main className="flex-1 bg-[#f4f5f7] p-6 mr-4 mt-6 rounded-t-2xl">{children}</main>
+        </section>
+      </body>
     </html >
   );
 }

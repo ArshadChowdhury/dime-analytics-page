@@ -1,44 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-*{
-    font-family: 'Poppins', sans-serif;
+
+@theme {
+    --font-display: "Poppins", "sans-serif";
+
+    --color-purple-title: '#3C2C63';
+    --color-warm-yellow: '#FFC979';
+    --color-pale-grey: '#FAFAFD';
+    --color-field-grey: '#C1C1CE';
+    --color-body-grey: '#5F6073';
+    --color-faint-pink: '#E9DFFD';
+    --color-dark-grey: '#1D1D1D';
+    --color-light-purple: '#615591';
+    --color-menu-selector: '#B6B6BF';
+    --color-purple-border: '#7940F3';
+    --color-light-grey: '#f4f5f7';
+
 }
 
-
-.purpleBorder {
-  border-color: #7940F3;
-}
-
-.purpleTitle {
-    color: #3C2C63;
-}
-
-.blueBackground{
-background-image: linear-gradient(to top, #06083D, #34235E);
-}
-
-.dimeWarmYellow{
-    color : #FFC979;
-}
-
-
-.dimeFieldGrey{
-    color : #C1C1CE;
-}
-
-.dimeMenuSelector:hover {
-    background-color : #B6B6BF;
-}
-
-.dimePaleGrey {
-    border-color : #FAFAFD;
-}
-
-.dimeBodyGrey{
-    color:#5F6073;
-}
-
-.dimeFaintPink {
-   border-color: #E9DFFD;
+.gredientBackground{
+    background-image: linear-gradient(to top, #06083D, #34235E);
 }
