@@ -12,19 +12,9 @@ import {
   Legend,
 } from 'recharts';
 import AdditionalInfoLegend from './AdditionalInfoLegend';
+import { useQuery } from '@tanstack/react-query';
+import axios from '@/lib/axios';
 
-const data = [
-  { id: 1, name: 'Company C', region: 'North', revenue: 130000, x: 50, sizeMetric: 40 },
-  { id: 2, name: 'Company D', region: 'South', revenue: 160000, x: 40, sizeMetric: 50 },
-  { id: 3, name: 'Company E', region: 'South', revenue: 270000, x: 25, sizeMetric: 70 },
-  { id: 4, name: 'Company F', region: 'South', revenue: 15000, x: 90, sizeMetric: 10 },
-  { id: 5, name: 'Company G', region: 'East', revenue: 240000, x: 35, sizeMetric: 55 },
-  { id: 6, name: 'Company H', region: 'East', revenue: 35000, x: 80, sizeMetric: 20 },
-  { id: 7, name: 'Company I', region: 'West', revenue: 320000, x: 20, sizeMetric: 75 },
-  { id: 8, name: 'Company J', region: 'West', revenue: 90000, x: 60, sizeMetric: 35 },
-  { id: 9, name: 'Company K', region: 'Other', revenue: 380000, x: 15, sizeMetric: 85 },
-  { id: 10, name: 'Company L', region: 'Other', revenue: 60000, x: 70, sizeMetric: 25 },
-];
 
 interface CustomTooltipProps {
   active?: boolean;
@@ -99,12 +89,26 @@ const regionColors: Record<string, string> = {
 };
 
 export default function KPIRevenueBenchmark() {
+
+  const { data: revenueBenchmarksData, isLoading: isLoadingRevenue, error: errorRevenue } = useQuery({
+    queryKey: ['revenueBenchmarks'],
+    queryFn: () =>
+      axios.get('/revenueBenchmarksData').then(res => res.data),
+  });
+
+  if (isLoadingRevenue) return <p>Loading revenue benchmarks...</p>;
+  console.log(errorRevenue);
+
+  if (errorRevenue) return <p>Error loading revenue benchmark data</p>;
+
+
+
   const groupedData = Object.entries(
-    data.reduce((acc, item) => {
+    revenueBenchmarksData.reduce((acc: any, item: any) => {
       acc[item.region] = acc[item.region] || [];
       acc[item.region].push(item);
       return acc;
-    }, {} as Record<string, typeof data>)
+    }, {} as Record<string, typeof revenueBenchmarksData>)
   );
 
   return (
@@ -151,7 +155,7 @@ export default function KPIRevenueBenchmark() {
             content={<CustomLegend />}
           />
 
-          {groupedData.map(([region, points]) => (
+          {groupedData.map(([region, points]: any) => (
             <Scatter
               key={region}
               name={region}

@@ -12,6 +12,8 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axios from "@/lib/axios";
 
 
 interface CustomTooltipProps {
@@ -26,20 +28,6 @@ interface CustomTooltipProps {
 }
 
 
-const profitData = [
-  { fullDate: '2023-01-05', displayMonth: 'Jan', revenue: 68900, gross: 52000, operating: 35000 },
-  { fullDate: '2023-02-05', displayMonth: 'Feb', revenue: 72000, gross: 55000, operating: 38000 },
-  { fullDate: '2023-03-05', displayMonth: 'Mar', revenue: 78000, gross: 60000, operating: 42000 },
-  { fullDate: '2023-04-05', displayMonth: 'Apr', revenue: 86000, gross: 66000, operating: 46000 },
-  { fullDate: '2023-05-05', displayMonth: 'May', revenue: 92000, gross: 70000, operating: 50000 },
-  { fullDate: '2023-06-05', displayMonth: 'Jun', revenue: 98000, gross: 74000, operating: 54000 },
-  { fullDate: '2023-07-05', displayMonth: 'Jul', revenue: 104000, gross: 78000, operating: 58000 },
-  { fullDate: '2023-08-05', displayMonth: 'Aug', revenue: 110000, gross: 82000, operating: 62000 },
-  { fullDate: '2023-09-05', displayMonth: 'Sep', revenue: 120000, gross: 88000, operating: 68000 },
-  { fullDate: '2023-10-05', displayMonth: 'Oct', revenue: 110000, gross: 74000, operating: 54000 },
-  { fullDate: '2023-11-05', displayMonth: 'Nov', revenue: 140000, gross: 100000, operating: 80000 },
-  { fullDate: '2023-12-05', displayMonth: 'Dec', revenue: 150000, gross: 106000, operating: 86000 },
-];
 
 
 
@@ -98,6 +86,18 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 
 
 export default function KPIProfitabilityChart() {
+
+
+    const { data: profitData, isLoading: isLoadingGrowth, error: errorGrowth } = useQuery({
+    queryKey: ['profit'],
+    queryFn: () =>
+      axios.get('/profitData').then(res => res.data),
+  });
+
+  if (isLoadingGrowth) return <p>Loading growth benchmarks...</p>;
+  if (errorGrowth) return <p>Error loading growth benchmark data</p>;
+
+
   return (
     <section className="my-6 space-y-12">
       <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-8">

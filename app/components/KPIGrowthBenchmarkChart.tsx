@@ -11,19 +11,10 @@ import {
   ZAxis,
 } from 'recharts';
 import AdditionalInfoLegend from './AdditionalInfoLegend';
+import { useQuery } from '@tanstack/react-query';
+import axios from '@/lib/axios';
 
-const data = [
-  { id: 1, name: 'Company C', region: 'North', revenue: 130000, rank: 30, xPosition: 1 },
-  { id: 2, name: 'Company D', region: 'South', revenue: 160000, rank: 40, xPosition: 2 },
-  { id: 3, name: 'Company E', region: 'South', revenue: 270000, rank: 25, xPosition: 3 },
-  { id: 4, name: 'Company F', region: 'South', revenue: 15000, rank: 90, xPosition: 4 },
-  { id: 5, name: 'Foundry Fitness', region: 'East', revenue: 200000, rank: 50, xPosition: 5 },
-  { id: 6, name: 'Company H', region: 'East', revenue: 35000, rank: 80, xPosition: 6 },
-  { id: 7, name: 'Company I', region: 'West', revenue: 320000, rank: 20, xPosition: 7 },
-  { id: 8, name: 'Company J', region: 'West', revenue: 90000, rank: 60, xPosition: 8 },
-  { id: 9, name: 'Company K', region: 'Other', revenue: 380000, rank: 15, xPosition: 9 },
-  { id: 10, name: 'Company L', region: 'Other', revenue: 60000, rank: 70, xPosition: 10 },
-];
+
 
 const regionColors: Record<string, string> = {
   North: '#6495ED',
@@ -70,12 +61,23 @@ const CustomLegend = ({ payload }: any) => {
 };
 
 export default function KPIGrowthBenchmarkChart() {
+
+  const { data: growthBenchmarksData, isLoading: isLoadingGrowth, error: errorGrowth } = useQuery({
+    queryKey: ['growthBenchmarks'],
+    queryFn: () =>
+      axios.get('/growthBenchmarksData').then(res => res.data),
+  });
+
+  if (isLoadingGrowth) return <p>Loading growth benchmarks...</p>;
+  if (errorGrowth) return <p>Error loading growth benchmark data</p>;
+
+
   const groupedData = Object.entries(
-    data.reduce((acc, item) => {
+    growthBenchmarksData.reduce((acc: any, item: any) => {
       acc[item.region] = acc[item.region] || [];
       acc[item.region].push(item);
       return acc;
-    }, {} as Record<string, typeof data[0][]>)
+    }, {} as Record<string, typeof growthBenchmarksData[0][]>)
   );
 
   return (
@@ -106,7 +108,7 @@ export default function KPIGrowthBenchmarkChart() {
             content={<CustomLegend />}
           />
 
-          {groupedData.map(([region, points]) => (
+          {groupedData.map(([region, points]: any) => (
             <Scatter
               key={region}
               name={region}

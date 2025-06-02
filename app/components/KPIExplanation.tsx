@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axios from '@/lib/axios';
 
 // Define the shape of the data for each KPI item
 interface KpiDataItem {
@@ -15,42 +17,7 @@ interface KpiDataItem {
   percentile: number; // 0-100 for the progress bar
 }
 
-// Data for the KPI items (you can replace this with your actual data)
-const kpiData: KpiDataItem[] = [
-  {
-    id: 'cashOnHand1',
-    title: 'Cash on Hand',
-    value: 756132,
-    status: 'bad', // Red cross
-    description: "A measure of the cash and cash equivalents in actual possession by the company at a particular time. At the end of this period the company held $756,132 of cash and cash equivalents. Cash on Hand is below the required target of $900,000. Insufficient cash reserves may result in an inability to pay creditors and cover current liabilities.",
-    formula: 'Cash on Hand = Cash & Equivalents',
-    median: 1599532,
-    rank: '5/6',
-    percentile: 40, // 40%
-  },
-  {
-    id: 'cashOnHand2',
-    title: 'Cash on Hand',
-    value: 756132,
-    status: 'good', // Green check
-    description: "This is another example of a cash on hand explanation, demonstrating a 'good' status. The company is meeting its targets and has sufficient cash reserves to cover liabilities and invest in future growth.",
-    formula: 'Cash on Hand = Cash & Equivalents',
-    median: 1599532,
-    rank: '5/6',
-    percentile: 75, // 75%
-  },
-  {
-    id: 'cashOnHand3',
-    title: 'Cash on Hand',
-    value: 756132,
-    status: 'good', // Green check
-    description: "A third example, also showing a 'good' status. This highlights the flexibility of the component to render different statuses and content.",
-    formula: 'Cash on Hand = Cash & Equivalents',
-    median: 1599532,
-    rank: '5/6',
-    percentile: 20, // 20%
-  },
-];
+
 
 // Reusable KpiItem Component
 const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLast }) => {
@@ -173,12 +140,24 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
 
 // Main KpiSection Component
 const KPIExplanation: React.FC = () => {
+
+
+  const { data: kpiExplanationData, isLoading, error } = useQuery({
+    queryKey: ['kpiexplanation'],
+    queryFn: () =>
+      axios.get('/kpiExplanationData').then(res => res.data),
+  });
+
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading breakeven data</p>;
+
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-800 mb-4">KPIs Explained (Appendix)</h2>
       <div>
-        {kpiData.map((item, index) => (
-          <KpiItem key={item.id} data={item} isLast={index === kpiData.length - 1} />
+        {kpiExplanationData.map((item: any, index: number) => (
+          <KpiItem key={item.id} data={item} isLast={index === kpiExplanationData.length - 1} />
         ))}
       </div>
     </div>

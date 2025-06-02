@@ -1,5 +1,6 @@
 import Sidebar from "./components/Sidebar";
 import type { Metadata } from "next";
+import { QueryProvider } from "@/lib/QueryProvider";
 
 
 import "./globals.css";
@@ -17,15 +18,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
       <body
         className={'antialiased'}
       >
+        <QueryProvider>
         <section className="min-h-screen flex gredientBackground">
           <Sidebar />
           <main className="flex-1 bg-[#f4f5f7] p-5 mr-4 mt-6 rounded-t-2xl">{children}</main>
         </section>
+        </QueryProvider>
       </body>
     </html >
   );

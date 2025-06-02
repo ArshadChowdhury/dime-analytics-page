@@ -2,8 +2,6 @@
 
 
 import {
-    LineChart,
-    Line,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -13,56 +11,8 @@ import {
     AreaChart,
     ResponsiveContainer
 } from 'recharts';
-
-
-const breakevenData = [
-    { fullDate: '2023-01-05', revenue: 69000, fixed: 40000, variable: 29000 },
-    { fullDate: '2023-02-05', revenue: 72000, fixed: 40000, variable: 32000 },
-    { fullDate: '2023-03-05', revenue: 78000, fixed: 40000, variable: 38000 },
-    { fullDate: '2023-04-05', revenue: 83000, fixed: 40000, variable: 43000 },
-    { fullDate: '2023-05-05', revenue: 87000, fixed: 40000, variable: 47000 },
-    { fullDate: '2023-06-05', revenue: 95000, fixed: 40000, variable: 55000 },
-    { fullDate: '2023-07-05', revenue: 98000, fixed: 40000, variable: 58000 },
-    { fullDate: '2023-08-05', revenue: 110000, fixed: 40000, variable: 70000 },
-];
-
-
-// Data for the metric cards, directly from your image
-const metricData = [
-    {
-        title: 'TOTAL REVENUE',
-        value: '$329,397',
-        description: 'A measure of the total amount of money received by the company for goods sold or services provided.',
-    },
-    {
-        title: 'EXPENSES TO REVENUE RATIO',
-        value: '79.72%',
-        description: 'A measure of how efficiently the business is conducting its operations.',
-    },
-    {
-        title: 'TOTAL COSTS',
-        value: '$262,606',
-    },
-    {
-        title: 'BREAKEVEN MARGIN OF SAFETY',
-        value: '$103,578',
-        description: 'The breakeven safety margin represents the gap between the actual revenue level and the breakeven point. In other words, the amount by which revenue can drop before losses begin to be incurred.',
-        isTall: true, // This card will span two rows
-    },
-    {
-        title: 'VARIABLE COSTS',
-        value: '$0.36/$1 rev',
-    },
-    {
-        title: 'FIXED COSTS',
-        value: '$145,617',
-    },
-    {
-        title: 'BREAKEVEN POINT',
-        value: '$225,818',
-    },
-];
-
+import axios from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
 
 interface CustomTooltipProps {
     active?: boolean;
@@ -134,8 +84,6 @@ const CustomLegend: React.FC<CustomLegendProps> = ({ payload }) => {
 
 // Custom tooltip
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
-    console.log(payload);
-    
     if (active && payload && payload.length) {
         const date = new Date(payload[0].payload.fullDate);
         const month = date.toLocaleString('default', { month: 'long' });
@@ -159,9 +107,34 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     return null;
 };
 
+type BreakevenDataItem = {
+    fullDate: string;
+    revenue: number;
+    fixed: number;
+    variable: number;
+};
+
 
 
 const KPIBreakEvenChart = () => {
+
+    const { data: breakevenData, isLoading, error } = useQuery({
+        queryKey: ['breakeven'],
+        queryFn: () =>
+            axios.get('/breakevenData').then(res => res.data),
+    });
+
+
+     const { data: metricsData } = useQuery({
+        queryKey: ['metrics'],
+        queryFn: () =>
+            axios.get('/metricsData').then(res => res.data),
+    });
+
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading breakeven data</p>;
+
     return (
         <>
             <div className="my-6 rounded-xl border border-gray-200 bg-white shadow-sm p-8">
@@ -217,9 +190,9 @@ const KPIBreakEvenChart = () => {
 
                 <div className="rounded-xl border border-gray-200 bg-white mt-10 p-6 shadow-sm">
                     {/* Title is not explicitly in the image, but common for such sections */}
-                    {/* <h2 className="text-lg font-semibold text-gray-800 mb-4">Key Metrics</h2> */}
+                    <h2 className="text-lg font-semibold text-gray-800 mb-4">Key Metrics</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {metricData.map((metric, index) => (
+                        {metricsData.map((metric:any, index:number) => (
                             <MetricCard
                                 key={index} // Using index as key is okay if the list is static and never reordered
                                 title={metric.title}
