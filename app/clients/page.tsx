@@ -1,21 +1,23 @@
-import KPIHeader from "../components/KPIHeader";
-import KPIResultsTable from "../components/KPIResultsTable";
-import KPICharts from "../components/KPICharts";
-import KPIRevenueBenchmark from "../components/KPIRevenueBenchmark";
-import KPIGrowthBenchmarkChart from "../components/KPIGrowthBenchmarkChart"
-import KPIExplanation from "../components/KPIExplanation";
+
+import Link from "next/link";
+import KPIHeader from "@/app/components/KPIHeader";
+import KPIResultsTable from "@/app/components/KPIResultsTable";
+import KPICharts from "@/app/components/KPICharts";
+import KPIExplanation from "@/app/components/KPIExplanation";
+import KPIRevenueBenchmark from "@/app/components/KPIRevenueBenchmark";
+import KPIGrowthBenchmarkChart from "@/app/components/KPIGrowthBenchmarkChart"
 
 export default function KpiAnalytics() {
   return (
     <div className="rounded-lg px-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-[40px] font-medium text-[#3C2C63]">Clients</h1>
-        <button className="flex items-center gap-2 cursor-pointer text-gray-600 border-2 border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
+        <Link href={"/dashboard"} className="flex items-center gap-2 cursor-pointer text-gray-600 border-2 border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
           Back to Dashboard
-        </button>
+        </Link>
       </div>
 
       <nav className="w-full flex items-center justify-between text-sm border-b-1 border-[#7940F3] mb-4">

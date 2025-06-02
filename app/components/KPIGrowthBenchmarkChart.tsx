@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-export default function GrowthBenchmarkChart() {
+export default function KPIGrowthBenchmarkChart() {
   return (
     <section className="p-6 rounded-lg shadow-md mb-8">
       <h2 className="text-xl font-semibold mb-4 text-[#3C2C63]">Growth Benchmark</h2>

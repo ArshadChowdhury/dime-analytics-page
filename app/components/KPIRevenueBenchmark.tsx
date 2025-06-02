@@ -34,7 +34,7 @@ const regionColors: Record<string, string> = {
   Other: '#DC143C',
 };
 
-export default function RevenueBenchmarkChart() {
+export default function KPIRevenueBenchmark() {
   const groupedData = Object.entries(
     data.reduce((acc, item) => {
       acc[item.region] = acc[item.region] || [];
