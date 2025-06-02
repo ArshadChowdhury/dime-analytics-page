@@ -1,5 +1,5 @@
 import React from "react";
-
+import CircleIcon from '@mui/icons-material/Circle';
 
 const tabs = ['Revenue', 'Expense', 'Cash Flow', 'Margin', 'KPI', 'Forecast'];
 
@@ -45,18 +45,25 @@ const sections = [
 export default function KPIResultsTable() {
   return (
     <section className="bg-white rounded-lg p-8">
-      <div className="flex justify-between my-4">
-        <h2 className="text-2xl font-medium text-[#3C2C63]">KPI Results</h2>
+      <div className="flex justify-between mb-10">
+        <h2 className="text-2xl text-[#3C2C63]">KPI Results</h2>
         <hr className="self-end h-1 w-[55%] text-[#E9DFFD]" />
-        <select className="border dimeFieldGrey rounded px-3 py-1 text-sm font-light text-dimeBodyGrey pr-10">
-          <option>Current Week to Previous Week</option>
-        </select>
+        <div className="relative inline-block">
+          <select className="border border-[#C1C1CE] rounded pl-4 py-2 text-sm font-light text-[#5F6073] pr-20 appearance-none">
+            <option>Current Week to Previous Week</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
+            <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+            </svg>
+          </div>
+        </div>
       </div>
       <div>
         <table className="min-w-full text-sm">
           <thead className="text-gray-500 uppercase text-right">
-            <tr className="font-medium border-b border-[#5F6073]">
-              <th className="py-3 text-sm text-left text-[#1D1D1D]">
+            <tr className="border-b border-[#5F6073]">
+              <th className="py-3 font-medium text-sm text-left text-[#1D1D1D]">
                 Parameter
               </th>
               <th className="py-3 text-xs">
@@ -75,8 +82,8 @@ export default function KPIResultsTable() {
           <tbody>
             {sections.map((section) => (
               <React.Fragment key={section.title}>
-                <tr className="my-4">
-                  <td colSpan={6} className="py-3 text-left font-semibold text-gray-700">
+                <tr className="my-6">
+                  <td colSpan={6} className="pt-8 pb-4 text-base text-left font-semibold text-gray-700">
                     {section.title}
                   </td>
                 </tr>
@@ -108,7 +115,7 @@ export default function KPIResultsTable() {
             ))}
           </tbody>
         </table>
-        <p className="text-xs text-gray-400 mt-2 px-4 pt-2">* For this metric, a result below target is favorable.</p>
+        <p className="flex gap-2 items-center text-xs text-[#5F6073] mt-2 px-4 pt-2"><CircleIcon className="!w-[6px]" /> For this metric, a result below target is favorable.</p>
       </div>
     </section>
   );

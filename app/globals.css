@@ -22,3 +22,7 @@
 .gredientBackground{
     background-image: linear-gradient(to top, #06083D, #34235E);
 }
+
+body{
+    font-family: "Poppins", sans-serif;
+}

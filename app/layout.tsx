@@ -1,16 +1,9 @@
 import Sidebar from "./components/Sidebar";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 
 
 import "./globals.css";
 
-
-const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-});
 
 
 export const metadata: Metadata = {
@@ -27,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} antialiased`}
+        className={'antialiased'}
       >
         <section className="min-h-screen flex gredientBackground">
           <Sidebar />
-          <main className="flex-1 bg-[#f4f5f7] p-6 mr-4 mt-6 rounded-t-2xl">{children}</main>
+          <main className="flex-1 bg-[#f4f5f7] p-5 mr-4 mt-6 rounded-t-2xl">{children}</main>
         </section>
       </body>
     </html >

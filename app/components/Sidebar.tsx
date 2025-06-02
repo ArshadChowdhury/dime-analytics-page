@@ -60,7 +60,7 @@ const Sidebar = () => {
                             <Link
                                 href={item.url}
                                 key={item.name}
-                                className={"p-2 flex gap-2 items-center rounded cursor-pointer hover:bg-violet-900"}
+                                className={"py-2 px-3 flex gap-2 items-center rounded cursor-pointer hover:bg-violet-900"}
                             >
                                 <div className={`text-sm ${pathname === item.url ? 'text-[#FFC979]' : 'text-[#C1C1CE]'}`}>
                                     {item.iconSrc}

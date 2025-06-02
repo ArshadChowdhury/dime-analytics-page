@@ -2,17 +2,18 @@
 import Link from "next/link";
 import KPIHeader from "@/app/components/KPIHeader";
 import KPIResultsTable from "@/app/components/KPIResultsTable";
-import KPICharts from "@/app/components/KPICharts";
+import KPIProfitabilityChart from "@/app/components/KPIProfitabilityChart"
 import KPIExplanation from "@/app/components/KPIExplanation";
 import KPIRevenueBenchmark from "@/app/components/KPIRevenueBenchmark";
 import KPIGrowthBenchmarkChart from "@/app/components/KPIGrowthBenchmarkChart"
+import KPIBreakEvenChart from "../components/KPIBreakEvenChart";
 
 export default function KpiAnalytics() {
   return (
     <div className="rounded-lg px-6">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-[40px] font-medium text-[#3C2C63]">Clients</h1>
-        <Link href={"/dashboard"} className="flex items-center gap-2 cursor-pointer text-gray-600 border-2 border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
+        <Link href={"/dashboard"} className="flex items-center gap-2 cursor-pointer text-gray-600 border border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
@@ -25,7 +26,7 @@ export default function KpiAnalytics() {
           {['Overview', 'Cash Flow', 'Transactions', 'Audits', 'Documents', 'Analytics'].map((item) => (
             <span
               key={item}
-              className={`tracking-wide pb-2 cursor-pointer text-base font-light ${item === 'Analytics' ? 'border-b-4 border-[#7940F3] font-semibold' : 'text-[#1D1D1D]'
+              className={`tracking-wide text-[#1D1D1D] pb-2 cursor-pointer text-base font-light ${item === 'Analytics' ? 'border-b-4 border-[#7940F3] font-semibold' : 'text-[#1D1D1D]'
                 }`}
             >
               {item}
@@ -42,11 +43,11 @@ export default function KpiAnalytics() {
       </nav>
       <KPIHeader />
       <KPIResultsTable />
-      <KPICharts />
+      <KPIProfitabilityChart />
+      <KPIBreakEvenChart />
       <KPIRevenueBenchmark />
       <KPIGrowthBenchmarkChart />
       <KPIExplanation />
-      
     </div>
   );
 }

@@ -36,7 +36,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export default function KPIGrowthBenchmarkChart() {
   return (
-    <section className="p-6 rounded-lg shadow-md mb-8">
+    <section className="my-6 rounded-xl border border-gray-200 bg-white shadow-sm p-8">
       <h2 className="text-xl font-semibold mb-4 text-[#3C2C63]">Growth Benchmark</h2>
 
       <div className="mb-6 text-gray-400 text-sm">Revenue Growth</div>
@@ -46,18 +46,19 @@ export default function KPIGrowthBenchmarkChart() {
           data={chartData}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-          <XAxis dataKey="name" stroke="#888" tickLine={false} axisLine={false} />
+          <CartesianGrid />
+          {/* <XAxis dataKey="name" stroke="#888" tickLine={false} axisLine={false} /> */}
           <YAxis
-            stroke="#888"
-            tickFormatter={(value) => `$${value / 1000}k`}
-            tickLine={false}
             axisLine={false}
-            domain={[0, 300000]} // Adjust based on your data range
+            tickLine={false}
+            tick={{ fill: '#4B5563', fontSize: 12 }}
+            ticks={[0, 50000, 100000, 150000]}
+            domain={[0, 150000]}
+            tickFormatter={(v) => `$${v.toLocaleString()}`}
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ paddingTop: '20px', outline : '2px', outlineColor: '#E7E7ED' }}
+            wrapperStyle={{ paddingTop: '20px', outline: '2px', outlineColor: '#E7E7ED' }}
             payload={[
               { value: 'North', type: 'circle', color: '#4CAF50' },
               { value: 'South', type: 'circle', color: '#FFC107' },
@@ -76,7 +77,7 @@ export default function KPIGrowthBenchmarkChart() {
           />
         </LineChart>
       </ResponsiveContainer>
-           <AdditionalInfoLegend /> 
+      <AdditionalInfoLegend />
 
     </section>
   );
