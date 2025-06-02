@@ -103,7 +103,7 @@ export default function KPIProfitabilityChart() {
       <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-8">
         <h2 className="text-2xl text-[#3C2C63] mb-10">Profitability for All Time</h2>
         <ResponsiveContainer width="100%" height={350}>
-          <LineChart data={profitData} margin={{ top: 20, right: 30, bottom: 30, left: 0 }}>
+          <LineChart data={profitData} margin={{ top: 20, right: 0, bottom: 30, left: 0 }}>
             <CartesianGrid stroke="#E5E7EB" vertical={false} />
             <XAxis
               dataKey="displayMonth"

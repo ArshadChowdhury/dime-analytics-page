@@ -1,84 +1,122 @@
 'use client';
 
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  ResponsiveContainer,
+  ScatterChart,
+  Scatter,
+  YAxis,
+  Tooltip,
+  Legend,
+  XAxis,
+  ZAxis,
 } from 'recharts';
 import AdditionalInfoLegend from './AdditionalInfoLegend';
 
-// Mock Data for the Growth Benchmark Chart
-const chartData = [
-  { name: 'Jan 1', revenue: 50000, pv: 2400, amt: 2400 },
-  { name: 'Jan 15', revenue: 70000, pv: 1398, amt: 2210 },
-  { name: 'Feb 1', revenue: 60000, pv: 9800, amt: 2290 },
-  { name: 'Feb 15', revenue: 80000, pv: 3908, amt: 2000 },
-  { name: 'Mar 1', revenue: 120000, pv: 4800, amt: 2181 },
-  { name: 'Mar 15', revenue: 150000, pv: 3800, amt: 2500 },
-  { name: 'Apr 1', revenue: 180000, pv: 4300, amt: 2100 },
-  { name: 'Apr 15', revenue: 200000, pv: 2400, amt: 2400 },
-  { name: 'May 1', revenue: 220000, pv: 1398, amt: 2210 },
-  { name: 'May 15', revenue: 250000, pv: 9800, amt: 2290 },
-  { name: 'Jun 1', revenue: 280000, pv: 3908, amt: 2000 },
-  { name: 'Jun 15', revenue: 290000, pv: 4800, amt: 2181 },
+const data = [
+  { id: 1, name: 'Company C', region: 'North', revenue: 130000, rank: 30, xPosition: 1 },
+  { id: 2, name: 'Company D', region: 'South', revenue: 160000, rank: 40, xPosition: 2 },
+  { id: 3, name: 'Company E', region: 'South', revenue: 270000, rank: 25, xPosition: 3 },
+  { id: 4, name: 'Company F', region: 'South', revenue: 15000, rank: 90, xPosition: 4 },
+  { id: 5, name: 'Foundry Fitness', region: 'East', revenue: 200000, rank: 50, xPosition: 5 },
+  { id: 6, name: 'Company H', region: 'East', revenue: 35000, rank: 80, xPosition: 6 },
+  { id: 7, name: 'Company I', region: 'West', revenue: 320000, rank: 20, xPosition: 7 },
+  { id: 8, name: 'Company J', region: 'West', revenue: 90000, rank: 60, xPosition: 8 },
+  { id: 9, name: 'Company K', region: 'Other', revenue: 380000, rank: 15, xPosition: 9 },
+  { id: 10, name: 'Company L', region: 'Other', revenue: 60000, rank: 70, xPosition: 10 },
 ];
 
-// Custom Tooltip for Recharts (as seen in the image)
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
+const regionColors: Record<string, string> = {
+  North: '#6495ED',
+  South: '#3CB371',
+  East: '#FFD580',
+  West: '#FF7F7F',
+  Other: '#DC143C',
+};
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: any[];
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
+  if (active && payload?.length) {
+    const { name, revenue, rank } = payload[0].payload;
     return (
-      <div className="bg-gray-800 bg-opacity-90 p-3 rounded-lg text-white text-xs shadow-lg">
-        <p className="font-bold">{`REVENUE`}</p>
-        <p className="text-gray-400">{`January 6: $6,900`}</p> {/* Static for now, would be dynamic */}
+      <div className="bg-black text-white text-xs rounded px-3 py-2 shadow-lg">
+        <p className="font-bold">#{rank}</p>
+        <p>{name} - {(revenue / 1000000).toFixed(1)}%</p>
       </div>
     );
   }
   return null;
 };
 
+const CustomLegend = ({ payload }: any) => {
+  return (
+    <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 rounded py-2 border border-gray-200">
+      {payload?.map((entry: any, index: number) => (
+        <li key={`item-${index}`} className="flex items-center">
+          <div
+            className="w-4 h-4 mr-2 rounded-full"
+            style={{ backgroundColor: entry.color }}
+          />
+          <span className="text-sm font-medium text-[#5F6073]">
+            {entry.value}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 export default function KPIGrowthBenchmarkChart() {
+  const groupedData = Object.entries(
+    data.reduce((acc, item) => {
+      acc[item.region] = acc[item.region] || [];
+      acc[item.region].push(item);
+      return acc;
+    }, {} as Record<string, typeof data[0][]>)
+  );
+
   return (
     <section className="my-6 rounded-xl border border-gray-200 bg-white shadow-sm p-8">
       <h2 className="text-xl font-semibold mb-4 text-[#3C2C63]">Growth Benchmark</h2>
-
       <div className="mb-6 text-gray-400 text-sm">Revenue Growth</div>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <LineChart
-          data={chartData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid />
-          {/* <XAxis dataKey="name" stroke="#888" tickLine={false} axisLine={false} /> */}
+      <ResponsiveContainer width="100%" height={300}>
+
+        <ScatterChart>
+          <XAxis dataKey="xPosition" type="number" hide />
           <YAxis
-            axisLine={false}
+            dataKey="revenue"
+            type="number"
+            domain={[0, 400000]}
+            ticks={[0, 50000, 200000, 300000]}
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
             tickLine={false}
+            axisLine={false}
             tick={{ fill: '#4B5563', fontSize: 12 }}
-            ticks={[0, 50000, 100000, 150000]}
-            domain={[0, 150000]}
-            tickFormatter={(v) => `$${v.toLocaleString()}`}
           />
+
+          <ZAxis dataKey="rank" range={[450, 1450]} />
           <Tooltip content={<CustomTooltip />} />
           <Legend
-            wrapperStyle={{ paddingTop: '20px', outline: '2px', outlineColor: '#E7E7ED' }}
-            payload={[
-              { value: 'North', type: 'circle', color: '#4CAF50' },
-              { value: 'South', type: 'circle', color: '#FFC107' },
-              { value: 'East', type: 'circle', color: '#F44336' },
-              { value: 'West', type: 'circle', color: '#E91E63' },
-              { value: 'Other', type: 'circle', color: '#9C27B0' },
-            ]}
+            verticalAlign="bottom"
+            wrapperStyle={{ paddingTop: 16 }}
+            content={<CustomLegend />}
           />
-          <Line
-            type="monotone"
-            dataKey="revenue"
-            stroke="#A78BFA"
-            strokeWidth={2}
-            dot={{ r: 4, fill: '#A78BFA', stroke: '#A78BFA', strokeWidth: 1 }}
-            activeDot={{ r: 6, fill: '#A78BFA', stroke: '#A78BFA', strokeWidth: 2 }}
-          />
-        </LineChart>
+
+          {groupedData.map(([region, points]) => (
+            <Scatter
+              key={region}
+              name={region}
+              data={points}
+              fill={regionColors[region]}
+            />
+          ))}
+        </ScatterChart>
       </ResponsiveContainer>
       <AdditionalInfoLegend />
-
     </section>
   );
 }

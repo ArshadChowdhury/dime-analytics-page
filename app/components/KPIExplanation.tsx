@@ -105,15 +105,14 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
           )}
         </div>
         <button
-          className="text-sm text-purple-600 font-medium uppercase tracking-wider flex items-center"
+          className="text-sm text-purple-600 font-medium uppercase tracking-wider flex items-center cursor-pointer"
         >
           {isCollapsed ? 'Expand' : 'Collapse'}
           {/* Chevron icon for expand/collapse */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-5 w-5 ml-1 transform transition-transform duration-200 ${
-              isCollapsed ? 'rotate-0' : 'rotate-180'
-            }`}
+            className={`h-5 w-5 ml-1 transform transition-transform duration-200 ${isCollapsed ? 'rotate-0' : 'rotate-180'
+              }`}
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -128,9 +127,8 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
 
       {/* Collapsible Content */}
       <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isCollapsed ? 'max-h-0 opacity-0 py-0' : 'max-h-screen opacity-100 py-4'
-        }`}
+        className={`${isCollapsed ? 'hidden' : ''} transition-all duration-300 rounded-lg py-6 px-4 border border-gray-200 ${isCollapsed ? 'max-h-0 opacity-0 py-0' : 'max-h-screen opacity-100 py-4'
+          }`}
       >
         <p className="text-sm text-gray-700 mb-4">
           {data.description}

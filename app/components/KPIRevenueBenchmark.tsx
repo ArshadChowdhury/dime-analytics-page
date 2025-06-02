@@ -110,9 +110,10 @@ export default function KPIRevenueBenchmark() {
   return (
     <div className="my-6 rounded-xl border border-gray-200 bg-white shadow-sm p-8">
       <h2 className="text-2xl text-[#3C2C63] mb-10">Revenue Benchmark</h2>
+      <div className="mb-6 text-gray-400 text-sm">Total Revenue</div>
 
       <ResponsiveContainer width="100%" height={400}>
-        <ScatterChart margin={{ top: 20, right: 0, bottom: 20, left: 26 }}>
+        <ScatterChart margin={{ top: 20, right: 0, bottom: 20, left: 0 }}>
           <CartesianGrid />
           <YAxis
             type="number"
@@ -121,7 +122,8 @@ export default function KPIRevenueBenchmark() {
             ticks={[0, 50000, 200000, 300000]}
             tickFormatter={(value) => `$${value}`}
             domain={[0, 400000]}
-            label={{ value: 'Total Revenue', position: 'top' }}
+            tick={{ fill: '#4B5563', fontSize: 12 }}
+
           />
           <YAxis yAxisId="visitors" orientation="right" stroke="#82ca9d" />
 
