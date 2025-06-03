@@ -21,9 +21,15 @@ To run this project locally you'll need to clone the repo then install dependenc
 $ npm install
 # or
 $ yarn install
-``` 
+```
 
-and run 
+Create .env.local and add -
+
+```
+NEXT_PUBLIC_BASE_URL=http://localhost:4200
+```
+
+afterwards run 
 
 ```
 $ npm run dev
