@@ -1,53 +1,77 @@
+"use client"
 
 import Link from "next/link";
 import KPIHeader from "@/app/components/KPIHeader";
 import KPIResultsTable from "@/app/components/KPIResultsTable";
-import KPIProfitabilityChart from "@/app/components/KPIProfitabilityChart"
+import KPIProfitabilityChart from "@/app/components/KPIProfitabilityChart";
 import KPIExplanation from "@/app/components/KPIExplanation";
 import KPIRevenueBenchmark from "@/app/components/KPIRevenueBenchmark";
-import KPIGrowthBenchmarkChart from "@/app/components/KPIGrowthBenchmarkChart"
+import KPIGrowthBenchmarkChart from "@/app/components/KPIGrowthBenchmarkChart";
 import KPIBreakEvenChart from "../components/KPIBreakEvenChart";
+import ClientsPageTabs from "../components/ClientsPageTabs";
+import { Suspense } from "react";
+import { useSearchParams } from 'next/navigation'
 
-export default function KpiAnalytics() {
+const TabContent = ({ tab }: { tab: string }) => {
+  const name = tab.replace("-", " ");
+
+  if (tab === "analytics") {
+    return (
+      <>
+        <KPIHeader />
+        <KPIResultsTable />
+        <KPIProfitabilityChart />
+        <KPIBreakEvenChart />
+        <KPIRevenueBenchmark />
+        <KPIGrowthBenchmarkChart />
+        <KPIExplanation />
+      </>
+    );
+  }
+
   return (
-    <div className="rounded-lg px-6">
+    <div className="text-xl text-gray-700 mt-4 font-medium capitalize">
+      {name} Page
+    </div>
+  );
+};
+
+export default function ClientsPage() {
+  const searchParams = useSearchParams();
+  const currentTab = searchParams.get('tab') || 'overview';
+
+
+  return (
+    <div className="min-h-[2000px] rounded-lg px-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-[40px] font-medium text-[#3C2C63]">Clients</h1>
-        <Link href={"/dashboard"} className="flex items-center gap-2 cursor-pointer text-gray-600 border border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-3">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        <Link
+          href={"/dashboard"}
+          className="flex items-center gap-2 cursor-pointer text-gray-600 border border-gray-500 font-medium rounded px-3 py-1 hover:bg-gray-100"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-3"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5 8.25 12l7.5-7.5"
+            />
           </svg>
           Back to Dashboard
         </Link>
       </div>
 
-      <nav className="w-full flex items-center justify-between text-sm border-b-1 border-[#7940F3] mb-4">
-        <div className="flex items-center gap-16">
-          {['Overview', 'Cash Flow', 'Transactions', 'Audits', 'Documents', 'Analytics'].map((item) => (
-            <span
-              key={item}
-              className={`tracking-wide text-[#1D1D1D] pb-2 cursor-pointer text-base font-light ${item === 'Analytics' ? 'border-b-4 border-[#7940F3] font-semibold' : 'text-[#1D1D1D]'
-                }`}
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" className="size-6">
-            <path fillRule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clipRule="evenodd" />
-          </svg>
+      <ClientsPageTabs />
 
-          AI CFO
-        </div>
-      </nav>
-      <KPIHeader />
-      <KPIResultsTable />
-      <KPIProfitabilityChart />
-      <KPIBreakEvenChart />
-      <KPIRevenueBenchmark />
-      <KPIGrowthBenchmarkChart />
-      <KPIExplanation />
+      <Suspense fallback={<div>Loading...</div>}>
+        <TabContent tab={currentTab} />
+      </Suspense>
     </div>
   );
 }

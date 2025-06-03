@@ -1,88 +1,90 @@
 {
-    "breakevenData": [
-        {
-            "fullDate": "2023-01-05",
-            "revenue": 69000,
-            "fixed": 40000,
-            "variable": 29000
-        },
-        {
-            "fullDate": "2023-02-05",
-            "revenue": 72000,
-            "fixed": 40000,
-            "variable": 32000
-        },
-        {
-            "fullDate": "2023-03-05",
-            "revenue": 78000,
-            "fixed": 40000,
-            "variable": 38000
-        },
-        {
-            "fullDate": "2023-04-05",
-            "revenue": 83000,
-            "fixed": 40000,
-            "variable": 43000
-        },
-        {
-            "fullDate": "2023-05-05",
-            "revenue": 87000,
-            "fixed": 40000,
-            "variable": 47000
-        },
-        {
-            "fullDate": "2023-06-05",
-            "revenue": 95000,
-            "fixed": 40000,
-            "variable": 55000
-        },
-        {
-            "fullDate": "2023-07-05",
-            "revenue": 98000,
-            "fixed": 40000,
-            "variable": 58000
-        },
-        {
-            "fullDate": "2023-08-05",
-            "revenue": 110000,
-            "fixed": 40000,
-            "variable": 70000
-        }
-    ],
-    "metricsData": [
-        {
-            "title": "TOTAL REVENUE",
-            "value": "$329,397",
-            "description": "A measure of the total amount of money received by the company for goods sold or services provided."
-        },
-        {
-            "title": "EXPENSES TO REVENUE RATIO",
-            "value": "79.72%",
-            "description": "A measure of how efficiently the business is conducting its operations."
-        },
-        {
-            "title": "TOTAL COSTS",
-            "value": "$262,606"
-        },
-        {
-            "title": "BREAKEVEN MARGIN OF SAFETY",
-            "value": "$103,578",
-            "description": "The breakeven safety margin represents the gap between the actual revenue level and the breakeven point. In other words, the amount by which revenue can drop before losses begin to be incurred.",
-            "isTall": true
-        },
-        {
-            "title": "VARIABLE COSTS",
-            "value": "$0.36/$1 rev"
-        },
-        {
-            "title": "FIXED COSTS",
-            "value": "$145,617"
-        },
-        {
-            "title": "BREAKEVEN POINT",
-            "value": "$225,818"
-        }
-    ],
+    "breakeven": {
+        "breakevenData": [
+            {
+                "fullDate": "2023-01-05",
+                "revenue": 69000,
+                "fixed": 40000,
+                "variable": 29000
+            },
+            {
+                "fullDate": "2023-02-05",
+                "revenue": 72000,
+                "fixed": 40000,
+                "variable": 32000
+            },
+            {
+                "fullDate": "2023-03-05",
+                "revenue": 78000,
+                "fixed": 40000,
+                "variable": 38000
+            },
+            {
+                "fullDate": "2023-04-05",
+                "revenue": 83000,
+                "fixed": 40000,
+                "variable": 43000
+            },
+            {
+                "fullDate": "2023-05-05",
+                "revenue": 87000,
+                "fixed": 40000,
+                "variable": 47000
+            },
+            {
+                "fullDate": "2023-06-05",
+                "revenue": 95000,
+                "fixed": 40000,
+                "variable": 55000
+            },
+            {
+                "fullDate": "2023-07-05",
+                "revenue": 98000,
+                "fixed": 40000,
+                "variable": 58000
+            },
+            {
+                "fullDate": "2023-08-05",
+                "revenue": 110000,
+                "fixed": 40000,
+                "variable": 70000
+            }
+        ],
+        "metricsData": [
+            {
+                "title": "TOTAL REVENUE",
+                "value": "$329,397",
+                "description": "A measure of the total amount of money received by the company for goods sold or services provided."
+            },
+            {
+                "title": "EXPENSES TO REVENUE RATIO",
+                "value": "79.72%",
+                "description": "A measure of how efficiently the business is conducting its operations."
+            },
+            {
+                "title": "TOTAL COSTS",
+                "value": "$262,606"
+            },
+            {
+                "title": "BREAKEVEN MARGIN OF SAFETY",
+                "value": "$103,578",
+                "description": "The breakeven safety margin represents the gap between the actual revenue level and the breakeven point. In other words, the amount by which revenue can drop before losses begin to be incurred.",
+                "isTall": true
+            },
+            {
+                "title": "VARIABLE COSTS",
+                "value": "$0.36/$1 rev"
+            },
+            {
+                "title": "FIXED COSTS",
+                "value": "$145,617"
+            },
+            {
+                "title": "BREAKEVEN POINT",
+                "value": "$225,818"
+            }
+        ]
+    },
     "growthBenchmarksData": [
         {
             "id": 1,
@@ -333,39 +335,146 @@
             "operating": 86000
         }
     ],
-    "kpiExplanationData" : [
-  {
-    "id": "cashOnHand1",
-    "title": "Cash on Hand",
-    "value": 756132,
-    "status": "bad",
-    "description": "A measure of the cash and cash equivalents in actual possession by the company at a particular time. At the end of this period the company held $756,132 of cash and cash equivalents. Cash on Hand is below the required target of $900,000. Insufficient cash reserves may result in an inability to pay creditors and cover current liabilities.",
-    "formula": "Cash on Hand = Cash & Equivalents",
-    "median": 1599532,
-    "rank": "5/6",
-    "percentile": 40
-  },
-  {
-    "id": "cashOnHand2",
-    "title": "Cash on Hand",
-    "value": 756132,
-    "status": "good",
-    "description": "This is another example of a cash on hand explanation, demonstrating a 'good' status. The company is meeting its targets and has sufficient cash reserves to cover liabilities and invest in future growth.",
-    "formula": "Cash on Hand = Cash & Equivalents",
-    "median": 1599532,
-    "rank": "5/6",
-    "percentile": 75
-  },
-  {
-    "id": "cashOnHand3",
-    "title": "Cash on Hand",
-    "value": 756132,
-    "status": "good",
-    "description": "A third example, also showing a 'good' status. This highlights the flexibility of the component to render different statuses and content.",
-    "formula": "Cash on Hand = Cash & Equivalents",
-    "median": 1599532,
-    "rank": "5/6",
-    "percentile": 20
-  }
-]
+    "kpiExplanationData": [
+        {
+            "id": "cashOnHand1",
+            "title": "Cash on Hand",
+            "value": 756132,
+            "status": "bad",
+            "description": "A measure of the cash and cash equivalents in actual possession by the company at a particular time. At the end of this period the company held $756,132 of cash and cash equivalents. Cash on Hand is below the required target of $900,000. Insufficient cash reserves may result in an inability to pay creditors and cover current liabilities.",
+            "formula": "Cash on Hand = Cash & Equivalents",
+            "median": 1599532,
+            "rank": "5/6",
+            "percentile": 40
+        },
+        {
+            "id": "cashOnHand2",
+            "title": "Cash on Hand",
+            "value": 756132,
+            "status": "good",
+            "description": "This is another example of a cash on hand explanation, demonstrating a 'good' status. The company is meeting its targets and has sufficient cash reserves to cover liabilities and invest in future growth.",
+            "formula": "Cash on Hand = Cash & Equivalents",
+            "median": 1599532,
+            "rank": "5/6",
+            "percentile": 75
+        },
+        {
+            "id": "cashOnHand3",
+            "title": "Cash on Hand",
+            "value": 756132,
+            "status": "good",
+            "description": "A third example, also showing a 'good' status. This highlights the flexibility of the component to render different statuses and content.",
+            "formula": "Cash on Hand = Cash & Equivalents",
+            "median": 1599532,
+            "rank": "5/6",
+            "percentile": 20
+        }
+    ],
+    "kpiResultsData": {
+        "Total Revenue": [
+            "$329,397",
+            "$328,739",
+            "+0.2%",
+            "$373,063",
+            3
+        ],
+        "Gross Profit Margin": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Profitability Ratio": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Net Profit After Tax Margin": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Wages as a % of Sales": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Rent as a % of Sales *": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Number of Members": [
+            "2,087",
+            "1,990",
+            "97",
+            "1,272",
+            3
+        ],
+        "Active Member": [
+            "2,087",
+            "1,990",
+            "97",
+            "1,272",
+            3
+        ],
+        "Revenue per Active Member": [
+            "$329,397",
+            "$328,739",
+            "+0.2%",
+            "$373,063",
+            3
+        ],
+        "Rev / SQM of Gym": [
+            "$329,397",
+            "$328,739",
+            "+0.2%",
+            "$373,063",
+            3
+        ],
+        "Cash on Hand": [
+            "$329,397",
+            "$328,739",
+            "+0.2%",
+            "$373,063",
+            3
+        ],
+        "Net Variable Cash Flow": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Revenue Growth": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "Gross Profit Growth": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ],
+        "EBIT Growth": [
+            "58.45%",
+            "61.68%",
+            "-3.23%",
+            "45.88%",
+            3
+        ]
+    }
 }

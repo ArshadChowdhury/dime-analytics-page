@@ -118,22 +118,19 @@ type BreakevenDataItem = {
 
 const KPIBreakEvenChart = () => {
 
-    const { data: breakevenData, isLoading, error } = useQuery({
+    const { data: breakeven, isLoading, error } = useQuery({
         queryKey: ['breakeven'],
         queryFn: () =>
-            axios.get('/breakevenData').then(res => res.data),
+            axios.get('/breakeven').then(res => res.data),
     });
-
-
-     const { data: metricsData } = useQuery({
-        queryKey: ['metrics'],
-        queryFn: () =>
-            axios.get('/metricsData').then(res => res.data),
-    });
-
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading breakeven data</p>;
+
+    const breakevenData = breakeven.breakevenData;
+
+    const metricsData = breakeven.metricsData;
+
 
     return (
         <>
@@ -192,7 +189,7 @@ const KPIBreakEvenChart = () => {
                     {/* Title is not explicitly in the image, but common for such sections */}
                     <h2 className="text-lg font-semibold text-gray-800 mb-4">Key Metrics</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {metricsData.map((metric:any, index:number) => (
+                        {metricsData.map((metric: any, index: number) => (
                             <MetricCard
                                 key={index} // Using index as key is okay if the list is static and never reordered
                                 title={metric.title}
