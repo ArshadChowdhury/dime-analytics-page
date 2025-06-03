@@ -97,7 +97,6 @@ export default function KPIRevenueBenchmark() {
   });
 
   if (isLoadingRevenue) return <p>Loading revenue benchmarks...</p>;
-  console.log(errorRevenue);
 
   if (errorRevenue) return <p>Error loading revenue benchmark data</p>;
 

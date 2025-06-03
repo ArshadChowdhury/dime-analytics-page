@@ -476,5 +476,14 @@
             "45.88%",
             3
         ]
+    },
+    "legendData": {
+        "header": "Q3 2021/2022 (QTD)",
+        "data": {
+            "median": "0.41%",
+            "rank": "55 / 68",
+            "percentile": "20%",
+            "value": "0.2%"
+        }
     }
 }
