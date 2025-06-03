@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/44a0c6ad-2e54-49bd-b675-8120d8573205)# Dime - b2b analytics page
-
 ## This Dime - b2b analytics app is built with Next.js.
 
 I've used tanstack query & axios to fetch data from json-server, designed with TailwindCSS.
