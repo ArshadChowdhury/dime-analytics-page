@@ -38,7 +38,7 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
         onClick={toggleCollapse}
       >
         <div className="flex items-center space-x-2">
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h3 className="text-lg font-semibold text-[#3C2C63]">
             {data.title}: {formatCurrency(data.value)}
           </h3>
           {data.status === 'bad' ? (
@@ -72,7 +72,7 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
           )}
         </div>
         <button
-          className="text-sm text-purple-600 font-medium uppercase tracking-wider flex items-center cursor-pointer"
+          className="text-sm text-[#615591] font-medium uppercase tracking-wider flex items-center cursor-pointer"
         >
           {isCollapsed ? 'Expand' : 'Collapse'}
           {/* Chevron icon for expand/collapse */}
@@ -124,12 +124,12 @@ const KpiItem: React.FC<{ data: KpiDataItem; isLast: boolean }> = ({ data, isLas
         {/* Custom Progress Bar / Slider */}
         <div className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-purple-600 rounded-full"
+            className="h-full bg-[#7940F3] rounded-full"
             style={{ width: `${data.percentile}%` }}
           ></div>
           {/* Slider thumb */}
           <div
-            className="absolute -top-1 w-4 h-4 bg-purple-600 rounded-full shadow-md border-2 border-white"
+            className="absolute -top-1 w-4 h-4 bg-[#7940F3] rounded-full shadow-md border-2 border-white"
             style={{ left: `calc(${data.percentile}% - 8px)` }} /* Adjust -8px for half thumb width */
           ></div>
         </div>
@@ -154,7 +154,7 @@ const KPIExplanation: React.FC = () => {
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">KPIs Explained (Appendix)</h2>
+      <h2 className="text-lg font-semibold text-[#3C2C63] mb-4">KPIs Explained (Appendix)</h2>
       <div>
         {kpiExplanationData.map((item: any, index: number) => (
           <KpiItem key={item.id} data={item} isLast={index === kpiExplanationData.length - 1} />
