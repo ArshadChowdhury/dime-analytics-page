@@ -23,13 +23,21 @@ $ npm install
 $ yarn install
 ``` 
 
-then run 
+and run 
 
 ```
 $ npm run dev
 # or
 $ yarn dev
-``` 
+```
+
+then open a different terminal and run 
+
+```
+$ json-server --watch db.json --port 4200
+```
+
+It will start the json-server where all the page data is stored and being fetched from.
 
 You need to navigate to - http://localhost:3000/clients?tab=analytics to see the results from the screenshots.
 
