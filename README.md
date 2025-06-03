@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![image](https://github.com/user-attachments/assets/44a0c6ad-2e54-49bd-b675-8120d8573205)# Dime - b2b analytics page
 
-## Getting Started
+## This Dime - b2b analytics app is built with Next.js.
 
-First, run the development server:
+I've used tanstack query & axios to fetch data from json-server, designed with TailwindCSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Brief overview of the app - 
+
+![image](https://github.com/user-attachments/assets/12e6604b-24ec-43cc-806c-92497f3aa445)
+
+![image](https://github.com/user-attachments/assets/b5e97f64-3d57-4d9c-8d52-ca98628e3a90)
+
+![image](https://github.com/user-attachments/assets/2c3240d5-f254-43af-8cfa-be50ec9dc6de)
+
+![image](https://github.com/user-attachments/assets/370af516-9b88-4e39-8609-9bfde0bbec6c)
+
+
+## Running locally - 
+
+To run this project locally you'll need to clone the repo then install dependencies using 
+
 ```
+$ npm install
+# or
+$ yarn install
+``` 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+then run 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+$ npm run dev
+# or
+$ yarn dev
+``` 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+as Next.js has added a script stating dev built-in here it'll execute the script and start the dev server on - http://localhost:3000/
+But you need to navigate to - http://localhost:3000/clients?tab=analytics to see the results from the screenshots.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
