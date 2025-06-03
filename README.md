@@ -23,7 +23,7 @@ $ npm install
 $ yarn install
 ```
 
-Create .env.local and add -
+Create .env.local and copy from env example or add -
 
 ```
 NEXT_PUBLIC_BASE_URL=http://localhost:4200
