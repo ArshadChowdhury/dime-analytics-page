@@ -31,7 +31,6 @@ $ npm run dev
 $ yarn dev
 ``` 
 
-as Next.js has added a script stating dev built-in here it'll execute the script and start the dev server on - http://localhost:3000/
-But you need to navigate to - http://localhost:3000/clients?tab=analytics to see the results from the screenshots.
+You need to navigate to - http://localhost:3000/clients?tab=analytics to see the results from the screenshots.
 
 
